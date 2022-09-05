@@ -30,4 +30,4 @@ api.add_resource(IsProfane, '/is_profane')
 api.add_resource(ProfaneProb, '/profane_prob')
 
 if __name__ == '__main__': 
-    app.run(debug=False, port=80)
+    app.run(debug=False, host='0.0.0.0', port=80)
