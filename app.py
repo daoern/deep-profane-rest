@@ -15,16 +15,19 @@ def get_msg():
     args = parser.parse_args()
     return args['msg']
 
+@app.route("/")
+def home():
+    return "Deep Profane REST API"
 class IsProfane(Resource):
-    def get(self):
+    def post(self):
         return {'is_profane': profane_checker.is_profane(get_msg()).tolist()}
 
 class ProfaneProb(Resource):
-    def get(self):
+    def post(self):
         return {'profane_prob':profane_checker.get_profane_prob(get_msg()).tolist()}
 
 api.add_resource(IsProfane, '/is_profane')
 api.add_resource(ProfaneProb, '/profane_prob')
 
 if __name__ == '__main__': 
-    app.run(debug=False, port=80)
+    app.run(debug=False, host='0.0.0.0', port=80)
